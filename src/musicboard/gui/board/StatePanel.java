@@ -36,7 +36,7 @@ public class StatePanel extends JPanel {
 		setBackground(state.getColor());
 		setLayout(new BorderLayout(10, 10));
 		
-		setPreferredSize(new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width / 4.8), 200));
+		setPreferredSize(new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width / 4.8), Integer.parseInt(Config.getValue("state-panel-height"))));
 		
 		this.add(namePanel(), BorderLayout.NORTH);
 		this.add(itemsPanel(), BorderLayout.CENTER);
