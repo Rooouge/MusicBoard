@@ -58,8 +58,10 @@ public class StatePanel extends JPanel {
 	
 	private JScrollPane itemsPanel() {
 		itemPanels = new ArrayList<>();
+		int minRows = Integer.parseInt(Config.getValue("minimum-rows"));
+		int items = state.getItemsCount();
 		
-		TransparentPanel itemsPanel = new TransparentPanel(new GridLayout(Integer.parseInt(Config.getValue("maximum-rows")), 1));
+		TransparentPanel itemsPanel = new TransparentPanel(new GridLayout(items < minRows ? minRows : items, 1));
 		Color stateBg = state.getColor();
 		Color brighter = new Color(
 				(stateBg.getRed() + 32) > 255 ? 255 : (stateBg.getRed() + 32), 
@@ -75,10 +77,9 @@ public class StatePanel extends JPanel {
 		}
 		
 		JScrollPane pane = new JScrollPane(itemsPanel);
-//		pane.setBorder(BorderFactory.createEmptyBorder());
+		pane.setBounds(0, 0, this.getPreferredSize().width, this.getPreferredSize().height);
 		pane.setBackground(brighter);
 		pane.getViewport().setBackground(brighter);
-		pane.addMouseListener(new ScrollPaneMouseListener(this));
 		
 		return pane;
 	}
