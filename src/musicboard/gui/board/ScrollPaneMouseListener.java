@@ -1,11 +1,16 @@
 package musicboard.gui.board;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -52,8 +57,9 @@ public class ScrollPaneMouseListener implements MouseListener {
 			
 			String parentName = parent.getState().getName();
 			List<String> stateNamesList = new ArrayList<>();
+			Board board = Global.get("board", Board.class);
 			
-			for(State state : Global.get("board", Board.class).getStates()) {
+			for(State state : board.getStates()) {
 				String name = state.getName();
 				
 				if(!name.equals(parentName))
@@ -61,7 +67,7 @@ public class ScrollPaneMouseListener implements MouseListener {
 			}
 			
 			for(String name : stateNamesList) {
-				JMenuItem menuItem = new JMenuItem(name);
+				JMenuItem menuItem = new JMenuItem(name, buildIconFromColor(16, board.findState(name).getColor()));
 				
 				menuItem.addActionListener(e -> {
 					State state = parent.getState();
@@ -73,21 +79,23 @@ public class ScrollPaneMouseListener implements MouseListener {
 							items.add(panel.getItem());
 					}
 					
-					for(Item item : items) {
-						if(state.removeItem(item))
-							newState.addItem(item);
-						else
-							Log.error("Failed to move from \"" + state.getName() + "\" to \"" + newState.getName() + "\"");
+					if(!items.isEmpty()) {
+						for(Item item : items) {
+							if(state.removeItem(item))
+								newState.addItem(item);
+							else
+								Log.error("Failed to move from \"" + state.getName() + "\" to \"" + newState.getName() + "\"");
+						}
+						
+						try {
+							XML.write();
+							Global.refreshGui();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						Utils.beep();
 					}
-					
-					try {
-						XML.write();
-						Global.refreshGui();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					
-					Utils.beep();
 				});
 				
 				popup.add(menuItem);
@@ -108,5 +116,17 @@ public class ScrollPaneMouseListener implements MouseListener {
 		}
 		
 		return null;		
+	}
+	
+	private Icon buildIconFromColor(int side, Color color) {
+		BufferedImage image = new BufferedImage(side, side, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = image.createGraphics();
+		
+		g.setPaint(color);
+		g.fillRect(0, 0, side, side);
+		g.setColor(Color.black);
+		g.drawRect(0, 0, side-1, side-1);
+		
+		return new ImageIcon(image);
 	}
 }
