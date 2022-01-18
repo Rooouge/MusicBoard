@@ -79,21 +79,23 @@ public class ScrollPaneMouseListener implements MouseListener {
 							items.add(panel.getItem());
 					}
 					
-					for(Item item : items) {
-						if(state.removeItem(item))
-							newState.addItem(item);
-						else
-							Log.error("Failed to move from \"" + state.getName() + "\" to \"" + newState.getName() + "\"");
+					if(!items.isEmpty()) {
+						for(Item item : items) {
+							if(state.removeItem(item))
+								newState.addItem(item);
+							else
+								Log.error("Failed to move from \"" + state.getName() + "\" to \"" + newState.getName() + "\"");
+						}
+						
+						try {
+							XML.write();
+							Global.refreshGui();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						
+						Utils.beep();
 					}
-					
-					try {
-						XML.write();
-						Global.refreshGui();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					
-					Utils.beep();
 				});
 				
 				popup.add(menuItem);
