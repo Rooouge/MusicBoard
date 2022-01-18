@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<board counter="10">
+    <state color="#66ccff" name="Open"/>
+    <state color="#ffff66" name="Doing">
+        <item id="8" value="Go-Go Boots \ Calling \ Kidsos (Axwell 2013)"/>
+    </state>
+    <state color="#ffaa44" name="Missing track(s)">
+        <item id="5" value="Wrong Hands \ ANTIDOTE \ It Gets Better"/>
+        <item id="6" value="HOW DO YOU FEEL RIGHT NOW \ Don't Worry \ Heads Will Roll"/>
+        <item id="7" value="Triton \ PRESSURE (Axwell 2013)"/>
+    </state>
+    <state color="#66ff66" name="Done">
+        <item id="0" value="Bloodflow \ Leave The World Behind"/>
+        <item id="9" value="Jack U \ 555 \ Greyhound"/>
+    </state>
+    <state color="#aa66ff" name="YouTube">
+        <item id="2" value="Roar \ Miami 2 Ibiza \ Fall Into The Sky (Axwell 2013)"/>
+        <item id="3" value="Blaze \ Sweet Nothing (Axwell 2013)"/>
+        <item id="4" value="One \ Dream Bigger (UMF 2018)"/>
+    </state>
+    <state color="#ff6666" name="Discarded"/>
+</board>
