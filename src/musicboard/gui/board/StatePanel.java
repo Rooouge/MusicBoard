@@ -80,6 +80,7 @@ public class StatePanel extends JPanel {
 		pane.setBounds(0, 0, this.getPreferredSize().width, this.getPreferredSize().height);
 		pane.setBackground(brighter);
 		pane.getViewport().setBackground(brighter);
+		pane.addMouseListener(new ScrollPaneMouseListener(this));
 		
 		return pane;
 	}
