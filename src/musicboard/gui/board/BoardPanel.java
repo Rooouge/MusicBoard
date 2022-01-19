@@ -11,7 +11,6 @@ import lombok.Getter;
 import musicboard.Global;
 import musicboard.data.Board;
 import musicboard.data.State;
-import musicboard.data.xml.XML;
 
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel {
@@ -21,8 +20,8 @@ public class BoardPanel extends JPanel {
 	private List<StatePanel> statePanels;
 	
 	
-	public BoardPanel() throws Exception {
-		board = XML.init();
+	public BoardPanel() {
+		board = Global.get("board", Board.class);
 		statePanels = new ArrayList<>();
 		List<State> states = board.getStates();
 		

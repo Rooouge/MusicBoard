@@ -32,7 +32,7 @@ public class XML {
 	private File file;
 	
 	
-	public Board init() throws Exception {
+	public void init() throws Exception {
 		Log.system("----------------");
 		Log.system("Parsing XML");
 		Board board = new Board();
@@ -75,7 +75,6 @@ public class XML {
 		
 		Global.add("board", board);
 		Global.add("states", String.join(";", board.getStates().stream().map(State::getName).collect(Collectors.toList())));
-		return board;
 	}
 	
 	private Document getXML() throws Exception {
