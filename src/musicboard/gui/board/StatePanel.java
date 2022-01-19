@@ -81,6 +81,7 @@ public class StatePanel extends JPanel {
 		pane.setBackground(brighter);
 		pane.getViewport().setBackground(brighter);
 		pane.addMouseListener(new ScrollPaneMouseListener(this));
+		pane.getVerticalScrollBar().setUnitIncrement(Integer.parseInt(Config.getValue("state-panel-scroll-unit")));
 		
 		return pane;
 	}
