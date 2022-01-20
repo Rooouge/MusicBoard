@@ -2,6 +2,8 @@ package musicboard.data.xml;
 
 import java.awt.Color;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import javax.xml.XMLConstants;
@@ -62,8 +64,9 @@ public class XML {
 				Element itemElem = (Element) itemElems.item(j);
 				String value = itemElem.getAttribute("value");
 				int id = Integer.parseInt(itemElem.getAttribute("id"));
+				String creationTimeString = itemElem.getAttribute("creation-time");			
 				
-				Item item = new Item(id, value);
+				Item item = new Item(id, value, creationTimeString.isEmpty() ? new Date() : new SimpleDateFormat(Config.getValue("creation-date-format")).parse(creationTimeString));
 				
 				state.addItem(item);	
 				Log.system("  - [" + (j+1) + "/" + itemElems.getLength() + "] Founded item \"" + item.getValue() + "\"");
@@ -111,6 +114,7 @@ public class XML {
 				Element itemElem = doc.createElement("item");
 				itemElem.setAttribute("id", "" + item.getId());
 				itemElem.setAttribute("value", item.getValue());
+				itemElem.setAttribute("creation-time", Item.CREATION_DATE_FORMAT.format(item.getCreationDate()));
 				
 				stateElem.appendChild(itemElem);	
 				Log.system("Added item \"" + item.getValue() + "\" + with Id = " + item.getId());

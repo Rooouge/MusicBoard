@@ -41,7 +41,7 @@ public class AddDialog extends JDialog {
 	}
 	
 	
-	private JPanel content() {		
+	private JPanel content() {
 		JPanel panel = new JPanel(new BorderLayout(0, 15));
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Colors.GRAY_64), new EmptyBorder(15)));
 		panel.add(description(), BorderLayout.NORTH);
@@ -88,7 +88,7 @@ public class AddDialog extends JDialog {
 	private JPanel create() {
 		JButton button = new JButton("Create");
 		button.addActionListener(e -> {			
-			Operations.add(nameField, stateBox);
+			Operations.add(nameField, stateBox.getSelectedItem());
 			setVisible(false);
 		});
 		
