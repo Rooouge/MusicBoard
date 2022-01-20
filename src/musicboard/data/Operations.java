@@ -1,6 +1,7 @@
 package musicboard.data;
 
-import javax.swing.JComboBox;
+import java.util.Date;
+
 import javax.swing.JTextField;
 
 import lombok.experimental.UtilityClass;
@@ -12,14 +13,14 @@ import musicboard.gui.board.StatePanel;
 @UtilityClass
 public class Operations {
 
-	public void add(JTextField nameField, JComboBox<String> stateBox) {
+	public void add(JTextField nameField, Object selected) {
 		Board board = Global.get("board", Board.class);
-		State state = board.findState("" + stateBox.getSelectedItem());
+		State state = board.findState("" + selected);
 		
 		int id = board.getNewId();
 		String value = nameField.getText().trim();
 		
-		state.addItem(new Item(id, value));
+		state.addItem(new Item(id, value, new Date()));
 	}
 	
 	public void delete() {
@@ -29,11 +30,15 @@ public class Operations {
 			State state = statePanel.getState();
 			
 			for(ItemPanel itemPanel : statePanel.getItemPanels()) {
-				System.out.println(itemPanel.getItem().getValue() + " - " + itemPanel.getCheckBox().isSelected());
 				if(itemPanel.getCheckBox().isSelected()) {
 					state.removeItem(itemPanel.getItem());
 				}
 			}
 		}
+	}
+	
+	public void edit(Item item, String newValue, Date newCreationDate) {
+		item.setValue(newValue);
+		item.setCreationDate(newCreationDate);
 	}
 }
