@@ -15,8 +15,9 @@ public class Content extends jutils.gui.Content {
 		this.setLayout(new BorderLayout());
 		this.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Colors.GRAY_64));
 		
-		this.add(new OperationsPanel(), BorderLayout.WEST);
-		this.add(new BoardPanel(), BorderLayout.CENTER);
+		add(new OperationsPanel(), BorderLayout.WEST);
+		add(new BoardPanel(), BorderLayout.CENTER);
+		add(new Footer(), BorderLayout.SOUTH);
 	}
 	
 	
