@@ -24,7 +24,7 @@ public class Footer extends ColoredPanel {
 		super(
 			Colors.GRAY_48,
 			new BorderLayout(),
-			BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Colors.CYAN), new EmptyBorder(5))
+			BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.white), new EmptyBorder(5))
 		);
 		
 //		JLabel label = new JLabel(Config.getValue("footer").trim(), SwingConstants.CENTER);

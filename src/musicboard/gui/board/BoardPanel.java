@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel {
 	private List<StatePanel> statePanels;
 	
 	
-	public BoardPanel() {
+	public BoardPanel() {		
 		board = Global.get("board", Board.class);
 		statePanels = new ArrayList<>();
 		List<State> states = board.getStates();
@@ -35,7 +35,7 @@ public class BoardPanel extends JPanel {
 		
 		this.setLayout(new GridLayout(row, column, 5, 5));
 		this.setBorder(new EmptyBorder(15));
-				
+		
 		for(State state : states) {
 			StatePanel statePanel = new StatePanel(state);
 			add(statePanel);

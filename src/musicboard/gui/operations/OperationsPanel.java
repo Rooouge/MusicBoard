@@ -27,7 +27,7 @@ public class OperationsPanel extends JPanel {
 		this.setBorder(new EmptyBorder(15));
 		
 		this.add(menuBar(),	BorderLayout.NORTH);
-		this.add(logo(), BorderLayout.SOUTH);
+//		this.add(logo(), BorderLayout.SOUTH);
 	}
 	
 	
@@ -67,6 +67,7 @@ public class OperationsPanel extends JPanel {
 		return menuPanel;
 	}
 	
+	@SuppressWarnings("unused")
 	private JLabel logo() {
 		return new JLabel(Images.getImageIcon("logo"));
 	}
