@@ -2,9 +2,7 @@ package musicboard.gui.operations;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,13 +19,12 @@ import musicboard.data.xml.XML;
 @SuppressWarnings("serial")
 public class OperationsPanel extends JPanel {
 
-	public OperationsPanel() throws IOException {
+	public OperationsPanel() {
 		this.setBackground(Colors.CYAN);
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(15));
 		
 		this.add(menuBar(),	BorderLayout.NORTH);
-		this.add(logo(), BorderLayout.SOUTH);
 	}
 	
 	
@@ -59,16 +56,11 @@ public class OperationsPanel extends JPanel {
 			}
 		});
 		
-		TransparentPanel menuPanel = new TransparentPanel(new GridLayout(5, 1, 0, 15));
-		menuPanel.add(add);
-		menuPanel.add(delete);
+		TransparentPanel panel = new TransparentPanel(new GridLayout(5, 1, 0, 15));
+		panel.add(add);
+		panel.add(delete);
 		
-		
-		return menuPanel;
-	}
-	
-	private JLabel logo() {
-		return new JLabel(Images.getImageIcon("logo"));
+		return panel;
 	}
 	
 }
